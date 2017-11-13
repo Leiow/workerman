@@ -2,7 +2,6 @@
 require realpath(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
 
 use Workerman\Worker;
-use Workerman\Connection\AsyncTcpConnection;
 
 $worker = new Worker();
 $worker->name = 'ZMQ PULL';
