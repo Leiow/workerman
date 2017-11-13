@@ -12,7 +12,19 @@ if (file_exists($worker_path . '/config/config.json')) {
     exit('Can not find the configuration file!');
 }
 
-require realpath(__DIR__) . '/worker/tcp.php';
-require realpath(__DIR__) . '/worker/tcp_sec.php';
+function record(\Workerman\Worker $worker, $msg)
+{
+    if (Worker::$daemonize) {
+        Libs\Record::log($worker, $msg);
+    } else {
+        echo $msg, PHP_EOL;
+    }
+}
+
+foreach ($config['worker'] as $name => $info) {
+    if ($info['process'] >= 1) {
+        require realpath(__DIR__) . "/worker/{$name}.php";
+    }
+}
 
 Worker::runAll();
