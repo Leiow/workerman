@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee87911e1dcd7806e0baf8a0ccb1fea2",
+    "content-hash": "ce1f9da19d5341ff932dfacadb39c523",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -140,6 +140,36 @@
                 "zmq"
             ],
             "time": "2014-05-25T17:54:51+00:00"
+        },
+        {
+            "name": "workerman/channel",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/walkor/Channel.git",
+                "reference": "1425baf00f6342bfee89b726326225a8b6a8ea80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/walkor/Channel/1425baf00f6342bfee89b726326225a8b6a8ea80.zip",
+                "reference": "1425baf00f6342bfee89b726326225a8b6a8ea80",
+                "shasum": ""
+            },
+            "require": {
+                "workerman/workerman": ">=3.3.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Channel\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "homepage": "http://www.workerman.net",
+            "time": "2016-04-07T07:26:43+00:00"
         },
         {
             "name": "workerman/workerman",
