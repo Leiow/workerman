@@ -9,9 +9,15 @@ $worker = new Worker();
 $worker->name = 'Websocket Client';
 $worker->onWorkerStart = function($worker) {
     $connect = new AsyncTcpConnection('ws://127.0.0.1:10002');
-    $connect->onConnect = function($conn) {
+    // id 的使用，需要引用，否则无法获取或修改
+    $id = null;
+    $connect->onConnect = function($conn) use (&$id) {
         echo 'client connect success!', PHP_EOL;
-        $conn->send(date('H:i:s', time()));
+        // 获取 Timer 的 ID，用于 onClose 事件中删除
+        $id = Timer::add(1, function() use ($conn) {
+            $conn->send(date('H:i:s', time()));
+        });
+        echo 'Timer id : ', $id, PHP_EOL;
     };
     $connect->onMessage = function($conn, $msg) {
         echo 'Received : ', $msg, PHP_EOL;
@@ -19,8 +25,9 @@ $worker->onWorkerStart = function($worker) {
     $connect->onError = function($conn, $code, $msg) use ($connect) {
         echo '[Client error]  code : ', $code, '; message : ', $msg, PHP_EOL;
     };
-    $connect->onClose = function($conn) use ($connect) {
+    $connect->onClose = function($conn) use ($connect, &$id) {
         echo 'Server close!', PHP_EOL;
+        Timer::del($id);
         $conn->reConnect(2);
     };
     $connect->connect();
