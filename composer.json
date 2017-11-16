@@ -1,0 +1,14 @@
+{
+    "name": "lichao/workerman",
+    "authors": [
+        {
+            "name": "Leiow",
+            "email": "leiow.lic@gmail.com"
+        }
+    ],
+    "require": {
+        "workerman/workerman": "^3.5",
+        "react/zmq": "^0.3.0",
+        "workerman/channel": "^1.0"
+    }
+}

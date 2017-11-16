@@ -1,0 +1,15 @@
+{
+    "tcp" : {
+        "listen" : "tcp://0.0.0.0:10000",
+        "name" : "Tcp Server",
+        "process" : 1
+    },
+    "worker" : {
+        "tcp" : {
+            "process" : 1
+        },
+        "tcp_sec" : {
+            "process" : 1
+        }
+    }
+}
